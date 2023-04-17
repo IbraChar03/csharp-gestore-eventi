@@ -49,6 +49,32 @@
             }
           
             Console.WriteLine("Ok,Vabene");
+            Console.Write("Inserisci il nome del tuo programma eventi : ");
+            string titoloProgramma = Console.ReadLine();
+            Console.Write("Inserisci il numero di eventi per il tuo programma : ");
+            int numEventi;
+            while (!int.TryParse(Console.ReadLine(), out numEventi))
+                Console.WriteLine("inserisci un numero");
+            ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
+            for(int i = 0; i < numEventi; i++)
+            {
+                Console.Write($"Inserisci il nome del {i + 1} evento : ");
+                string titoloEvento = Console.ReadLine();
+                Console.Write("Inserisci la data dell`evento (dd/MM/yyyy) : ");
+                string dataEvento = Console.ReadLine();
+                Console.Write("Inserisci la capienza massima dell`evento : ");
+                int capienzaMassimaEvento;
+                while (!int.TryParse(Console.ReadLine(), out capienzaMassimaEvento))
+                    Console.Write("Inserisci un numero");
+                Evento nuovoEvento = new Evento(titoloEvento, dataEvento, capienzaMassimaEvento);
+                programma.eventi.Add(nuovoEvento);
+            }
+            Console.WriteLine($"Il numero di eventi nel programma è {programma.NumeroEventi()} ");
+            programma.StampaProgramma();
+            Console.Write("Inserisci una data : ");
+            string dataEventi = Console.ReadLine();
+            ProgrammaEventi.StampaLista(programma.ListaData(dataEventi));
+            programma.SvuotaLista();
 
         }
     }

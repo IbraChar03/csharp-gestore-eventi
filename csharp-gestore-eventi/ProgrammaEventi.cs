@@ -14,12 +14,13 @@ namespace csharp_gestore_eventi
         public ProgrammaEventi(string titolo)
         {
             Titolo = titolo;
+            eventi = new List<Evento>();
         }
         public void AggiungiEvento(Evento evento)
         {
             eventi.Add(evento);
         }
-        public List<Evento> ListaData(string data)
+        public  List<Evento> ListaData(string data)
         {
             List <Evento> nuovaLista = new List <Evento>();
             string[] formats = { "dd/MM/yyyy" };
@@ -38,7 +39,7 @@ namespace csharp_gestore_eventi
         {
             foreach(Evento evento in lista)
             {
-                Console.Write($"{evento.ToString()}");
+                Console.WriteLine($"{evento.ToString()}");
             }
         }
         public int NumeroEventi()
@@ -49,10 +50,10 @@ namespace csharp_gestore_eventi
         {
             eventi.Clear();
         }
-        public void StampaProgramma(ProgrammaEventi programmaeventi)
+        public void StampaProgramma()
         {
-            Console.WriteLine($"{programmaeventi.Titolo}");
-            foreach(Evento evento in programmaeventi.eventi)
+            Console.WriteLine($"{Titolo}");
+            foreach(Evento evento in eventi)
             {
                 Console.WriteLine($"{evento.ToString()}");
             } 

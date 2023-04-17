@@ -76,7 +76,6 @@ namespace csharp_gestore_eventi
             Titolo = titolo;
             string[] formats = { "dd/MM/yyyy" };
             Data = DateOnly.ParseExact(data,formats);
-            Console.WriteLine(Data);
             CapienzaMassima = capienzaMassima;
             NumPostiPrenotati = 0;
         }
