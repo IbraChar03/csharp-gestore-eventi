@@ -42,9 +42,10 @@ namespace csharp_gestore_eventi
             set
             {
                 if (value < DateOnly.FromDateTime(DateTime.Now))
-                    throw new Exception("Non puoi inserire una data già passata");
+                   throw new Exception("Attenzione! Hai inserito una data passata");
                 else
-                    _data = value;
+                   _data = value;
+               
             }
         }
         public int CapienzaMassima
@@ -78,6 +79,8 @@ namespace csharp_gestore_eventi
             CapienzaMassima = capienzaMassima;
             NumPostiPrenotati = 0;
         }
+        
+        
         public void PrenotaPosti(int postiPrenotati)
         {
             int postiDisponibili = CapienzaMassima - NumPostiPrenotati;
