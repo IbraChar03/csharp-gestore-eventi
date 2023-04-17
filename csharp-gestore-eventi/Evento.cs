@@ -22,7 +22,12 @@ namespace csharp_gestore_eventi
             set
             {
                 if (value == "")
+                {
+                    Console.WriteLine("AAA");
                     throw new Exception("Il titolo non può essere un campo vuoto");
+                   
+                }
+                  
                 else
                     _titolo = value;
             }
@@ -51,10 +56,14 @@ namespace csharp_gestore_eventi
                 return _capienzaMassima;
             }
 
-            set
+            private set
             {
                 if (value < 0)
+                {
                     throw new Exception("Non puoi inserire numeri negativi");
+
+                }
+                    
                 else
                     _capienzaMassima = value;
             }
@@ -62,10 +71,12 @@ namespace csharp_gestore_eventi
 
         public int NumPostiPrenotati { get; private set; }
 
-        public Evento(string titolo, DateOnly data, int capienzaMassima)
+        public Evento(string titolo, string data, int capienzaMassima)
         {
             Titolo = titolo;
-            Data = data;
+            string[] formats = { "dd/MM/yyyy" };
+            Data = DateOnly.ParseExact(data,formats);
+            Console.WriteLine(Data);
             CapienzaMassima = capienzaMassima;
             NumPostiPrenotati = 0;
         }
