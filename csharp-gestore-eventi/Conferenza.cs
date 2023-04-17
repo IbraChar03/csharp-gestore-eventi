@@ -28,7 +28,7 @@ namespace csharp_gestore_eventi
         }
         public override string ToString()
         {
-            return FormattazioneData() + " - " + Titolo + " - " + Relatore + " - " + FormattazionePrezzo() + "euro";
+            return FormattazioneData() + " - " + Titolo + " - " + Relatore + " - " + FormattazionePrezzo() + " euro";
         }
     }
 }

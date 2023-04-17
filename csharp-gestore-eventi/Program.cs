@@ -54,47 +54,67 @@
             Console.Write("Inserisci il numero di eventi per il tuo programma : ");
             int numEventi;
             while (!int.TryParse(Console.ReadLine(), out numEventi))
-                Console.WriteLine("inserisci un numero");
+                Console.WriteLine("inserisci un numero : ");
             ProgrammaEventi programma = new ProgrammaEventi(titoloProgramma);
-            for(int i = 0; i < numEventi; i++)
-            {
-                Console.Write("Vuoi aggiungere un evento oppure una conferenza? (evento/conferenza) : ");
-                string risposta = Console.ReadLine();
-                if(risposta == "evento")
-                {
-                Console.Write($"Inserisci il nome dell` evento : ");
-                string titoloEvento = Console.ReadLine();
-                Console.Write("Inserisci la data dell`evento (dd/MM/yyyy) : ");
-                string dataEvento = Console.ReadLine();
-                Console.Write("Inserisci la capienza massima dell`evento : ");
-                int capienzaMassimaEvento;
-                while (!int.TryParse(Console.ReadLine(), out capienzaMassimaEvento))
-                    Console.Write("Inserisci un numero");
-                Evento nuovoEvento = new Evento(titoloEvento, dataEvento, capienzaMassimaEvento);
-                programma.eventi.Add(nuovoEvento);
+            Console.WriteLine(programma.NumeroEventi());
+            while (programma.NumeroEventi() != numEventi)
+            { 
+                    Console.Write("Vuoi aggiungere un evento oppure una conferenza? (evento/conferenza) : ");
+                    string risposta = Console.ReadLine();
+                    if (risposta == "evento")
+                    {
+                        try
+                        {
+                            Console.Write($"Inserisci il nome dell` evento : ");
+                            string titoloEvento = Console.ReadLine();
+                            Console.Write("Inserisci la data dell`evento (dd/MM/yyyy) : ");
+                            string dataEvento = Console.ReadLine();
+                            Console.Write("Inserisci la capienza massima dell`evento : ");
+                            int capienzaMassimaEvento;
+                            while (!int.TryParse(Console.ReadLine(), out capienzaMassimaEvento))
+                                Console.Write("Inserisci un numero : ");
+                            Evento nuovoEvento = new Evento(titoloEvento, dataEvento, capienzaMassimaEvento);
+                            programma.eventi.Add(nuovoEvento);
+                           Console.WriteLine(programma.NumeroEventi());
 
-                }
-                else if(risposta == "conferenza")
-                {
-                    Console.Write($"Inserisci il nome della conferenza : ");
-                    string titoloConferenza = Console.ReadLine();
-                    Console.Write("Inserisci la data dell`evento (dd/MM/yyyy) : ");
-                    string dataConferenza = Console.ReadLine();
-                    Console.Write("Inserisci la capienza massima dell`evento : ");
-                    int capienzaMassimaConferenza;
-                    while (!int.TryParse(Console.ReadLine(), out capienzaMassimaConferenza))
-                        Console.Write("Inserisci un numero");
-                    Console.Write("Inserisci il nome del relatore : ");
-                    string nomeRelatoreConferenza = Console.ReadLine();
-                    Console.Write("Inserisci il prezzo per la conferenza : ");
-                    double prezzoConferenza;
-                    while (!double.TryParse(Console.ReadLine(), out prezzoConferenza))
-                        Console.Write("Inserisci un numero");
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Evento non valido, riprova");
+                        }
 
-                    Conferenza nuovaConferenza = new Conferenza(nomeRelatoreConferenza,prezzoConferenza,titoloConferenza,dataConferenza,capienzaMassimaConferenza);
-                    programma.eventi.Add(nuovaConferenza);
-                }
-                
+
+                    }
+                    else if (risposta == "conferenza")
+                    {
+                        try
+                        {
+                            Console.Write($"Inserisci il nome della conferenza : ");
+                            string titoloConferenza = Console.ReadLine();
+                            Console.Write("Inserisci la data dell`evento (dd/MM/yyyy) : ");
+                            string dataConferenza = Console.ReadLine();
+                            Console.Write("Inserisci la capienza massima dell`evento : ");
+                            int capienzaMassimaConferenza;
+                            while (!int.TryParse(Console.ReadLine(), out capienzaMassimaConferenza))
+                                Console.Write("Inserisci un numero : ");
+                            Console.Write("Inserisci il nome del relatore : ");
+                            string nomeRelatoreConferenza = Console.ReadLine();
+                            Console.Write("Inserisci il prezzo per la conferenza : ");
+                            double prezzoConferenza;
+                            while (!double.TryParse(Console.ReadLine(), out prezzoConferenza))
+                                Console.Write("Inserisci un numero : ");
+
+                            Conferenza nuovaConferenza = new Conferenza(nomeRelatoreConferenza, prezzoConferenza, titoloConferenza, dataConferenza, capienzaMassimaConferenza);
+                            programma.eventi.Add(nuovaConferenza);
+                            Console.WriteLine(programma.NumeroEventi());
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine("Evento non valido, riprova");
+                        }
+                       
+                    }
+
             }
             Console.WriteLine($"Il numero di eventi nel programma è {programma.NumeroEventi()} ");
             programma.StampaProgramma();

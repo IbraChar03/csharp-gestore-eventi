@@ -23,7 +23,6 @@ namespace csharp_gestore_eventi
             {
                 if (value == "")
                 {
-                    Console.WriteLine("AAA");
                     throw new Exception("Il titolo non può essere un campo vuoto");
                    
                 }
